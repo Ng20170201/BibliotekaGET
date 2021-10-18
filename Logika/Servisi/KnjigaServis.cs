@@ -54,5 +54,10 @@ namespace Logika.Servisi
 
             }
         }
+
+        public Zahtev VratiSveZaZahtev(Zahtev z)
+        {
+            return uow.Zahtev.VratiSveZaKorisnika(z.knjigaId, z.usernameKorisnik);
+        }
     }
 }

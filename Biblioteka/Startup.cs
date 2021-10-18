@@ -49,10 +49,11 @@ namespace Biblioteka
                  options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                     );
             services.AddMvc();
-            services.AddControllers().AddNewtonsoftJson(options =>
-            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+  
             services.AddSignalR(o =>
             {
+              
+                
                 o.EnableDetailedErrors = true;
             });
 
@@ -85,7 +86,7 @@ namespace Biblioteka
                     name: "default",
                     pattern: "{controller=Korisnik}/{action=SignIn}/{id?}");
                 endpoints.MapHub<BibliotekaHub>("/bibliotekaHub");
-
+     
             });
             
         }

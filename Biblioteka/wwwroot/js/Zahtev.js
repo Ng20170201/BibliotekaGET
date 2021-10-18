@@ -5,24 +5,34 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/BibliotekaHub").bu
 
 
 
-connection.on("posaljiZahtev", function (z) {
+connection.on("posaljiZahtev", function (imeIPrezime, knjigaIme, knjigaId, usernameKorisnik) {
+   
+ 
+   
+   
 
-    var tr = document.createElement("tr");
-      var msg= $("tbody").append(
+
+    $("tbody").append(
+
+
         "<tr style='background-color:azure'>" +
-        "<td>" + z.Korisnik.ImeIPrezime + "</td>" +
-        "<td>" + z.Knjiga.Ime + "</td>" +
+         "<form action='Prihvati method='post'>"+
+            "<input type='hidden' name='z.knjigaId' value='"+knjigaId+"' />"+
+            "<input type='hidden' name='z.usernameKorisnik' value='"+usernameKorisnik+"' />"+
+        
+        "<td>" + imeIPrezime + "</td>" +
+        "<td>" + knjigaIme + "</td>" +
         "<td><input type='date' name='datumDo' /></td>" +
         "<td>" +
-        "<button class='btn btn-success' onclick='Prihvati(" + z + ",datumDo)'>Prihvati</button>" +
+        "<button class='btn btn-success' onclick='Prihvati()'>Prihvati</button>" +
 
         "</td>" +
+        "</form>" +
+        "</tr>" 
+           )
+    
+    
 
-        "</tr>"
-
-    );
-    document.getElementById("zahtev").appendChild(tr);
-    tr.textContent = msg;
 });
 
 
@@ -44,11 +54,3 @@ connection.start().then(function () {
 
 
 
-
-connection.on("prihvatiZahtev", function (z, datumDo) {
-
-
-    izbrisi(z);
-
-
-});

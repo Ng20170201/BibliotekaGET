@@ -76,7 +76,10 @@ namespace Biblioteka.Controllers
   
             z.usernameKorisnik = HttpContext.Session.GetString("Username");
             servis.Rezervisi(z);
-            hub.Clients.All.SendAsync("posaljiZahtev", z);
+            Zahtev z2=servis.VratiSveZaZahtev(z);
+           
+            //var newObject = new {id=z2.Korisnik.ImeIPrezime,}
+            hub.Clients.All.SendAsync("posaljiZahtev",z2.Korisnik.ImeIPrezime,z2.Knjiga.Ime,z.knjigaId,z.usernameKorisnik);
            
             //return RedirectToAction("Knjige");
 

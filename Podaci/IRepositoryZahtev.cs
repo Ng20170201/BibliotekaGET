@@ -9,6 +9,6 @@ namespace Podaci
 {
     public interface IRepositoryZahtev : IRepository<Zahtev>
     {
-    
+        Zahtev VratiSveZaKorisnika(int knjigaId, string usernameKorisnik);
     }
 }

@@ -44,5 +44,10 @@ namespace Podaci.Implementacija
         {
             return context.Zahtev.Include(r => r.Korisnik).Include(r => r.Knjiga).ToList().FindAll(z => z.usernameKorisnik == usernameKorisnik);
         }
+
+        public Zahtev VratiSveZaKorisnika(int knjigaId, string usernameKorisnik)
+        {
+            return context.Zahtev.Include(r => r.Korisnik).Include(r => r.Knjiga).First(z => z.knjigaId == knjigaId && z.usernameKorisnik == usernameKorisnik);
+        }
     }
 }

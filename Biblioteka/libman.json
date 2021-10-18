@@ -12,5 +12,10 @@
         "dist/browser/signalr.min.js.map"
       ]
     }
-  ]
+  ,
+{
+  "library": "@microsoft/signalr@latest",
+  "destination": "wwwroot/microsoft/signalr/"
+}
+]
 }

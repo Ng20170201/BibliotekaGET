@@ -38,7 +38,7 @@ namespace Biblioteka.Controllers
            
         }
         [HttpPost]
-        public void Prihvati(Zahtev z,DateTime datumDo)
+        public IActionResult Prihvati(Zahtev z,DateTime datumDo)
         {
             
             try
@@ -46,9 +46,10 @@ namespace Biblioteka.Controllers
                 Rezervacija r=servis.Prihvati(z, datumDo);
                 z.Korisnik = r.Korisnik;
                 z.usernameKorisnik = r.KorisnikUsername;
-            
-                hub.Clients.All.SendAsync("prihvatiZahtev", z, datumDo);
-                hub.Clients.All.SendAsync("obrisiZahtev", z);
+                
+                     int br = ViewBag.TipKorisnika;
+                hub.Clients.All.SendAsync("prihvatiZahtev", z.knjigaId,z.usernameKorisnik,z.Knjiga.Ime,z.Korisnik.ImeIPrezime,r.DatumIzdavanja,r.DatumVracanja,r.Id, datumDo,br);
+
             }
             catch (Exception)
             {
@@ -56,7 +57,7 @@ namespace Biblioteka.Controllers
                 
             }
 
-           
+            return RedirectToAction("Rezervacije", "Rezervacija");
 
         }
       
