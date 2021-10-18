@@ -52,6 +52,11 @@ namespace Podaci.Implementacija
             context.Knjiga.Update(k);
         }
 
+        public Knjiga Vrati(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Knjiga VratiKnjigu(int iDKnjige)
         {
 
@@ -62,6 +67,11 @@ namespace Podaci.Implementacija
         {
             return context.Knjiga.ToList();
         
+        }
+
+        public List<Knjiga> VratiSve(string usernameKorisnik)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Knjiga> VratiSveKorisnika(string s)

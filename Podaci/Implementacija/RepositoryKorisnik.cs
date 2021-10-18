@@ -32,10 +32,17 @@ namespace Podaci.Implementacija
             throw new NotImplementedException();
         }
 
+        public Korisnik Vrati(string usernameKorisnik)
+        {
+            return context.Korisnik.Find(usernameKorisnik);
+        }
+
         public List<Korisnik> VratiSve()
         {
             return context.Korisnik.ToList();
         }
+
+     
 
         public List<Korisnik> VratiSveKorisnika(string s)
         {

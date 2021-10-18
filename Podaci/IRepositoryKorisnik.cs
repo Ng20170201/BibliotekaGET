@@ -9,6 +9,6 @@ namespace Podaci
 {
     public interface IRepositoryKorisnik : IRepository<Korisnik>
     {
-        
+        Korisnik Vrati(string usernameKorisnik);
     }
 }

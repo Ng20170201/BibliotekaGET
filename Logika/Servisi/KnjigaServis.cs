@@ -47,7 +47,7 @@ namespace Logika.Servisi
             catch (Exception)
             {
 
-                Console.WriteLine("vec je poslan zahtev za tu knjigu");
+                throw;
 
 
 
@@ -57,7 +57,21 @@ namespace Logika.Servisi
 
         public Zahtev VratiSveZaZahtev(Zahtev z)
         {
-            return uow.Zahtev.VratiSveZaKorisnika(z.knjigaId, z.usernameKorisnik);
+            
+                return uow.Zahtev.VratiSveZaKorisnika(z.knjigaId, z.usernameKorisnik);
+            
+        
+        }
+
+        public Knjiga VratiKnjigu(int id)
+        {
+            return uow.Knjiga.VratiKnjigu(id);
+        }
+
+        public Korisnik VratiKorisnika(string usernameKorisnik)
+        {
+
+            return uow.Korisnik.Vrati(usernameKorisnik);
         }
     }
 }

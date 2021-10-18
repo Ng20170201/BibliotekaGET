@@ -8,6 +8,7 @@ namespace Domen
 {
     public class Knjiga
     {
+      
         public int Id { get; set; }
         public string Ime { get; set; }
 
