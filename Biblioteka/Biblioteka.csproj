@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domen\Domen.csproj" />
+    <ProjectReference Include="..\Logika\Logika.csproj" />
+    <ProjectReference Include="..\Podaci\Podaci.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,20 @@
+﻿
+@model Biblioteka.Models.CreateKnjigaModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "_LayoutBibliotekar";
+}
+
+
+
+
+<h2>Ubaci novu knjigu</h2>
+<form action="CreateKnjiga" method="post">
+    <div>
+        Naziv knjige  <input name="Knjiga.Ime" type="text">
+        Broj primeraka <input name="Knjiga.Kolicina" type="number">
+        <button type="submit" value="Kreiraj" class="btn btn-primary"> Sacuvaj knjigu</button>
+
+
+    </div>
+</form>

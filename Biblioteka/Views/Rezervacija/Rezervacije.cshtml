@@ -1,0 +1,80 @@
+﻿@model List<Rezervacija>
+@{
+    ViewBag.Title = "Create";
+
+    @if (ViewBag.TipKorisnika == 1)
+    {
+        Layout = "_LayoutKorisnik";
+    }
+    @if (ViewBag.TipKorisnika == 0)
+    {
+        Layout = "_LayoutBibliotekar";
+    }
+
+
+
+}
+<div>
+    <h2>Sve moje zaduzene knjige</h2>
+
+
+    <table style="border:1px solid black" id="" class="table table-bordered table-striped">
+        <thead>
+            <tr ">
+                <td> Ime knjige</td>
+                @if (ViewBag.TipKorisnika == 0)
+                {
+                    <td> Ime korisnika </td>
+                }
+                <td> Datum zaduzenja</td>
+                <td> Datum vracanja</td>
+                @if (ViewBag.TipKorisnika == 0)
+                {
+                    <td> Vrati </td>
+                }
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (ViewBag.TipKorisnika == 1)
+            {
+                @foreach (var rezervacija in Model)
+                {
+
+                    <tr style="background-color:azure" >
+                        <td>@rezervacija.Knjiga.Ime</td>
+                        <td>@rezervacija.DatumIzdavanja.Date.ToShortDateString()</td>
+                        <td>@rezervacija.DatumVracanja.Date.ToShortDateString()</td>
+
+
+                    </tr>
+                }
+            }
+            @if (ViewBag.TipKorisnika == 0)
+            {
+                @foreach (var rezervacija in Model)
+                {
+                    <form action="VratiKnjigu" method="post">
+                        <input type="hidden" name="id" value="@rezervacija.Id" />
+                        <input type="hidden" name="idKnjige" value="@rezervacija.IDKnjige" />
+                        <input type="hidden" name="username" value="@rezervacija.KorisnikUsername" />
+                    <tr style="background-color:azure">
+                        <td>@rezervacija.Knjiga.Ime</td>
+                        <td>@rezervacija.Korisnik.ImeIPrezime</td>
+                        <td>@rezervacija.DatumIzdavanja.Date.ToShortDateString()</td>
+                        <td>@rezervacija.DatumVracanja.Date.ToShortDateString()</td>
+                        <td> <button type="submit" value="Vrati" class="btn btn-outline-danger">Vrati</button></td>
+
+                    </tr>
+                    </form>
+                }
+            }
+        </tbody>
+    </table>
+    @if (ViewBag.TipKorisnika == 1)
+    {
+        <h3> Broj izdatih knjiga je @Model.Count</h3>
+    }
+</div>
+

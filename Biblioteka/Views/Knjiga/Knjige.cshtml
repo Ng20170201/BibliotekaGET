@@ -1,0 +1,85 @@
+﻿@model List<Knjiga>
+@{
+    ViewBag.Title = "Create";
+    Layout = "_LayoutKorisnik";
+}
+
+<div>
+    <h2>Sve nase knjige</h2>
+    <table style="border:1px solid black" id="" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Naziv knjige</th>
+                <th>Raspoloziva kolicina na stanju</th>
+                <th>Rezervisi</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var knjiga in Model)
+            {
+            <tr style="background-color:azure">
+               <input type="hidden" id="id" value="@knjiga.Id" /> 
+                <td>@knjiga.Ime</td>
+                <td>@knjiga.Kolicina</td>
+                @if (knjiga.Kolicina > 0)
+                {
+
+                    <td><button class="btn btn-success" id="rezervisiButton" onclick="Rezervisi(@knjiga.Id)">Rezervisi</button></td>
+                }
+                @if (knjiga.Kolicina == 0)
+                {
+                    <td> Sve knjige su izdate </td>
+                }
+            </tr>
+                    @*<form action="Rezervisi" method="post">
+                <tr style="background-color:azure">
+                    <input type="hidden" name="id" value="@knjiga.Id" />
+                    <td>@knjiga.Ime</td>
+                    <td>@knjiga.Kolicina</td>
+                    @if (knjiga.Kolicina > 0)
+                    {
+
+                        <td><button class="btn btn-success" type="submit" onclick="Rezervisi()">Rezervisi</button></td>
+                    }
+                    @if (knjiga.Kolicina == 0)
+                    {
+                        <td> Sve knjige su izdate </td>
+                    }
+
+                </tr>
+                </form>*@
+
+                    }
+
+            </tbody>
+
+    </table>
+</div>
+<script>
+    function Rezervisi(id) {
+
+
+        $.ajax({
+            url: '@Url.ActionLink("Rezervisi", "Knjiga")',
+            data: {
+                id: id,
+              
+            },
+            method: "post",
+            success: function (message) {
+
+                alert("Odobrena rezervacija");
+
+
+            },
+            error: function () {
+                alert("Error!");
+            }
+        });
+
+        }
+
+</script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>

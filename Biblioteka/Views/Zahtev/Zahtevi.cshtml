@@ -1,0 +1,101 @@
+﻿@model List<Zahtev>
+@{
+
+    Layout = "_LayoutBibliotekar";
+}
+
+<div>
+    <h2>Zahtevi za izdavanje</h2>
+
+    <table style="border:1px solid black" id="" class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <td>Ime korisnika</td>
+                <td>Zahtev za knjigu</td>
+                <td>Unesi datum do kad mora da vrati knjigu</td>
+                <td>Prihvati</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var zahtev in Model)
+            {
+
+
+                <tr style="background-color:azure" id="zahtev">
+                    <form action="Prihvati" method="post">
+                        <input type="hidden" name="z.knjigaId" value="@zahtev.knjigaId" />
+                        <input type="hidden" name="z.usernameKorisnik" value="@zahtev.usernameKorisnik" />
+                    <td>@zahtev.Korisnik.ImeIPrezime</td>
+                    <td>@zahtev.Knjiga.Ime</td>
+                    <td><input type="date" name="datumDo" /></td>
+                    <td>
+                        <button class="btn btn-success" onclick="Prihvati()">Prihvati</button>
+
+                    </td>
+                    </form>
+
+                </tr>
+
+
+
+            }
+
+
+        </tbody>
+
+    </table>
+
+
+</div>
+<script>
+
+    @*function Prihvati( datumDo,knjigaId,usernameKorisnik) {
+
+
+        $.ajax({
+            url: '@Url.ActionLink("Prihvati", "Zahtev")',
+            data: {
+                knjigaId: knjigaId,
+                usernameKorisnik: usernameKorisnik,
+                datumDo: datumDo
+            },
+            method: "post",
+            success: function (message) {
+
+                alert("Odobrena rezervacija");
+
+
+            },
+            error: function () {
+                alert("Error!");
+            }
+        });
+
+        }*@
+
+</script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/Zahtev.js"></script>
+
+<script>
+    //$(function () {
+    //    //var connection = new signalR.HubConnectionBuilder().withUrl("/BibliotekaHub").build();
+        
+    //    console.log("Pokrenuta je fja");
+    //    $("tbody").append(
+    //        "<tr style='background-color:azure'>" +
+    //        "<td>" + z.Korisnik.ImeIPrezime + "</td>" +
+    //        "<td>" + z.Knjiga.Ime + "</td>" +
+    //        "<td><input type='date' name='datumDo' /></td>" +
+    //        "<td>" +
+    //        "<button class='btn btn-success' onclick='Prihvati(" + z + ",datumDo)'>Prihvati</button>" +
+
+    //        "</td>" +
+
+    //        "</tr>"
+
+    //    );
+    //});
+</script>
