@@ -5,7 +5,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/BibliotekaHub").bu
 
 
 
-console.log("dovde");
+
 connection.on("prihvatiZahtev", function (knjigaId, usernameKorisnik, ImeKnjige, ImeIprezime, datumIzdavanja, DatumVracanja, rezervacijaID, datumDo, br) {
     if (br == 0) {
         $("tbody").append(
@@ -17,8 +17,8 @@ connection.on("prihvatiZahtev", function (knjigaId, usernameKorisnik, ImeKnjige,
 
             "<td>" + ImeKnjige + "</td >" +
             "<td>" + ImeIprezime + "</td >" +
-            "<td>" + datumIzdavanja.Date.ToShortDateString() + "</td>" +
-            "<td>" + DatumVracanja.Date.ToShortDateString() + "</td>" +
+            "<td>" + datumIzdavanja + "  </td>" +
+            "<td>" + DatumVracanja+" </td>" +
             "<td> <button type='submit' value='Vrati' class='btn btn-outline-danger'>Vrati</button></td>" +
             "</form>" +
             "</tr>"
@@ -37,7 +37,7 @@ connection.on("prihvatiZahtev", function (knjigaId, usernameKorisnik, ImeKnjige,
     }
 
 
-    console.log("dovde");
+
 });
 
 

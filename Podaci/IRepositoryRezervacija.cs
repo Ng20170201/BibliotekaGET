@@ -12,6 +12,6 @@ namespace Podaci
       
 
         void Delete(int id);
-    
+        Korisnik VratiKorisnika(string korisnikUsername);
     }
 }

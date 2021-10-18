@@ -34,6 +34,7 @@ namespace Logika.Servisi
             }
             r.IDKnjige = z.knjigaId;
             r.KorisnikUsername = z.usernameKorisnik;
+            r.Korisnik = uow.Rezervacija.VratiKorisnika(r.KorisnikUsername);
             try
             {
                 uow.Rezervacija.Kreiraj(r);

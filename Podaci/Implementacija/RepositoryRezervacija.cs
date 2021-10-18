@@ -54,5 +54,10 @@ namespace Podaci.Implementacija
         {
             context.Rezervacija.Remove(t);
         }
+
+        public Korisnik VratiKorisnika(string username)
+        {
+            return context.Korisnik.ToList().Find(r=>r.Username==username);
+        }
     }
 }

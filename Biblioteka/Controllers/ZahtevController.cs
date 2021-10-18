@@ -44,11 +44,12 @@ namespace Biblioteka.Controllers
             try
             {
                 Rezervacija r=servis.Prihvati(z, datumDo);
+                
                 z.Korisnik = r.Korisnik;
                 z.usernameKorisnik = r.KorisnikUsername;
                 
-                     int br = ViewBag.TipKorisnika;
-                hub.Clients.All.SendAsync("prihvatiZahtev", z.knjigaId,z.usernameKorisnik,z.Knjiga.Ime,z.Korisnik.ImeIPrezime,r.DatumIzdavanja,r.DatumVracanja,r.Id, datumDo,br);
+                     int br = (int)HttpContext.Session.GetInt32("TipKorisnika");
+                hub.Clients.All.SendAsync("prihvatiZahtev", z.knjigaId,z.usernameKorisnik,r.Knjiga.Ime,r.Korisnik.ImeIPrezime,r.DatumIzdavanja.ToShortDateString(),r.DatumVracanja.ToShortDateString(),r.Id, datumDo,br);
 
             }
             catch (Exception)
